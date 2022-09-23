@@ -1,0 +1,13 @@
+{
+	"name": "dev",
+	"context": "..",
+	"dockerFile": "../dev.Dockerfile",
+	"extensions": [
+		"twxs.cmake",
+		"ms-vscode.cmake-tools",
+		"ms-vscode.cpptools",
+		"ms-python.python",
+		"cschlosser.doxdocgen"
+	],
+	"updateContentCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
