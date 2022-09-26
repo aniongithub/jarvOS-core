@@ -7,7 +7,8 @@
 		"ms-vscode.cmake-tools",
 		"ms-vscode.cpptools",
 		"ms-python.python",
-		"cschlosser.doxdocgen"
+		"cschlosser.doxdocgen",
+		"cweijan.vscode-typora"
 	],
 	"updateContentCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 }
