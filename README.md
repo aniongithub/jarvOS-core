@@ -6,8 +6,8 @@
 
 **Zeropoint** consists of:
 
-* An API for creating **Nodes**, which are the smallest unit of composable work in this abstraction. **Nodes** are considered black-boxes that operate on the currently available input and produce outputs for the current time step.
-* An API for creating transforms and applying them on **Nodes**, called **Portals**. **Portals** allow transformation of any **Nodes** acquired through them, allowing us to create local or distributed graphs, render views of **Nodes** via a specific **Portal** and create any number of abstractions that operate on these graphs to produce other graphs via a transformation.
+* An API for creating **Nodes**, which are the smallest unit of composable work in this abstraction. **Nodes** are considered black-boxes that operate on the currently available inputs and produce outputs for the current (time) step.
+* An API for creating transforms and applying them on **Nodes**, called **Portals**. **Portals** allow transformation of any **Nodes** acquired through them, allowing us to create local or distributed (sub)graphs, render views of **Nodes** via a specific **Portal** or create any number of abstractions that operate on these graphs to produce other graphs via a transformation.
 * An API to coordinate data transfer between **Nodes** that is pipelining friendly, using **Queues** and **Events** to fence reads and writes across all parts of the (distributed) dataflow.
 
 It is a native, cross-platform C library that acts as an installable runtime to detect, load and appropriately call **Zeropoint** **Modules** that expose an implementation of this API as a set of C-callable functions to create and manipulate **Portals**, **Nodes**, **Queues** and **Events** in any other language, runtime or environment.
