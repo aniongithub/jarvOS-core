@@ -6,7 +6,6 @@
 		"twxs.cmake",
 		"ms-vscode.cmake-tools",
 		"ms-vscode.cpptools",
-		"ms-python.python",
 		"cschlosser.doxdocgen",
 		"cweijan.vscode-typora"
 	],

@@ -4,7 +4,7 @@
 		"prefix": "zpapi",
 		"body": [
 			"typedef ZP_Result (*ZP_${1:name}Func)(${2:args});",
-			"CONST_STRING ZP_${1:name}FuncName = \"${1:name}\";",
+			"#define ZP_${1:name}FuncName \"${1:name}\"",
 			"ZP_EXPORT ZP_Result zp${1:name}(${2:args});"
 		],
 		"description": "Declare a zeropoint API call, its function type and exported name"
