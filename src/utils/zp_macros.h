@@ -8,6 +8,7 @@
 #include <utils/zp_id.h>
 
 #define MAKE_ID(params) make_string_view(params.id, params.idSizeBytes)
+#define STRING_VIEW(obj, name) make_string_view(obj.name, obj.name##SizeBytes)
 
 template <typename T, typename ... Args>
 ZP_Result getFunc(void* hdl, T& func, const std::string_view& formatStr, Args ... args)

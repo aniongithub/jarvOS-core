@@ -21,4 +21,5 @@ target_sources(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PRIVATE 
         ${CMAKE_THREAD_LIBS_INIT}
-        fmt::fmt)
+        fmt::fmt
+        dl)

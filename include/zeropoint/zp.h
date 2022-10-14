@@ -42,16 +42,17 @@ struct ZP_LoggerHandle_t;
 typedef struct ZP_LoggerHandle_t* ZP_LoggerHandle;
 
 enum ZP_LogLevel_t {
-  ZP_LOGLEVEL_DEBUG,
-  ZP_LOGLEVEL_VERBOSE,
-  ZP_LOGLEVEL_INFO,
-  ZP_LOGLEVEL_WARNING,
-  ZP_LOGLEVEL_ERROR,
-  ZP_LOGLEVEL_FATAL
+  ZP_LOGLEVEL_NONE = 0,
+  ZP_LOGLEVEL_FATAL = 1,
+  ZP_LOGLEVEL_ERROR = 2,
+  ZP_LOGLEVEL_WARNING = 3,
+  ZP_LOGLEVEL_INFO = 4,
+  ZP_LOGLEVEL_DEBUG = 5,
+  ZP_LOGLEVEL_VERBOSE = 6
 };
 typedef enum ZP_LogLevel_t ZP_LogLevel;
 
-typedef void (*ZP_OnLogFunc)(ZP_LogLevel level, char* filename, size_t line, size_t col, char* message);
+typedef void (*ZP_OnLogFunc)(ZP_LogLevel level, const char* function, size_t line, const char* file, const char* message);
 
 struct ZP_LoggerParams_t {
   ZP_LogLevel logLevel;
@@ -59,13 +60,17 @@ struct ZP_LoggerParams_t {
 };
 typedef struct ZP_LoggerParams_t ZP_LoggerParams;
 
-typedef ZP_Result (*ZP_CreateLoggerFunc)(ZP_LoggerParams params, ZP_LoggerHandle* logger);
+typedef ZP_Result (*ZP_CreateLoggerFunc)(ZP_Lib libHdl, ZP_LoggerParams params, ZP_LoggerHandle* logger);
 #define ZP_CreateLoggerFuncName "CreateLogger"
-ZP_EXPORT ZP_Result zpCreateLogger(ZP_LoggerParams params, ZP_LoggerHandle* logger);
+ZP_EXPORT ZP_Result zpCreateLogger(ZP_Lib libHdl, ZP_LoggerParams params, ZP_LoggerHandle* logger);
 
-typedef ZP_Result (*ZP_DestroyLoggerFunc)(ZP_LoggerHandle logger);
+typedef ZP_Result (*ZP_LogFunc)(ZP_LogLevel level, const char* function, size_t line, const char* file, const char* message);
+#define ZP_LogFuncName "Log"
+ZP_EXPORT ZP_Result zpLog(ZP_LogLevel level, const char* function, size_t line, const char* file, const char* message);
+
+typedef ZP_Result (*ZP_DestroyLoggerFunc)(ZP_Lib libHdl, ZP_LoggerHandle logger);
 #define ZP_DestroyLoggerFuncName "DestroyLogger"
-ZP_EXPORT ZP_Result zpDestroyLogger(ZP_LoggerHandle logger);
+ZP_EXPORT ZP_Result zpDestroyLogger(ZP_Lib libHdl, ZP_LoggerHandle logger);
 
 #pragma endregion Logging API
 
@@ -76,8 +81,8 @@ typedef struct ZP_Module_t* ZP_Module;
 
 struct ZP_ModuleParams_t
 {
-  char* id;
-  size_t idSizeBytes;
+  char* name;
+  size_t nameSizeBytes;
 
   char* hintPath;
   size_t hintPathSizeBytes;
@@ -102,6 +107,7 @@ typedef ZP_Result (*ZP_shutdownModuleFunc)();
 
 #pragma region Context API
 
+// TODO: Add Module argument here, contexts are specific to modules
 struct ZP_Context_t;
 typedef struct ZP_Context_t* ZP_Context;
 
