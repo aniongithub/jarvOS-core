@@ -3,13 +3,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-project(zeropoint VERSION 0.1 DESCRIPTION "zeropoint ϕ is a cross-platform framework for building high-performance, distributed, real/non-realtime applications with a focus on simulation, training and deployment of autonomous agents.")
+project(jarvOS VERSION 0.1 DESCRIPTION "jarvOS ϕ is a cross-platform framework for building high-performance, distributed, real/non-realtime applications with a focus on simulation, training and deployment of autonomous agents.")
 
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
 # Generate wrapper source
 include(cmake/castxml.cmake)
-cast_xml(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/zp.h ${CMAKE_CURRENT_BINARY_DIR}/zp.xml)
+cast_xml(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/jOS.h ${CMAKE_CURRENT_BINARY_DIR}/jOS.xml)
 
 add_library(${PROJECT_NAME} SHARED libmain.c)
 
@@ -25,6 +25,9 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/source)
+
+# Add examples
+add_subdirectory(examples)
 
 # Export and install targets and headers
 include(GNUInstallDirs)

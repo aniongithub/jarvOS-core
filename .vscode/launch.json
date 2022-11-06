@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    // Dynamic configurations, adapted from 
+    // https://stackoverflow.com/a/64990776/802203
+    "inputs": [
+        {
+            "id": "example",
+            "type": "command",
+            "command": "shellCommand.execute",
+            "args": { "command": "find build/examples/ -maxdepth 1 -type f -executable" }
+        }
+    ],
+    "configurations": [
+        {
+            "name": "Run example...",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/${input:example}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

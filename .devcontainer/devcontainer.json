@@ -6,9 +6,10 @@
 		"twxs.cmake",
 		"ms-vscode.cmake-tools",
 		"ms-vscode.cpptools",
-		"ms-python.python",
 		"cschlosser.doxdocgen",
-		"cweijan.vscode-typora"
+		"cweijan.vscode-typora",
+		"Gruntfuggly.todo-tree",
+		"augustocdias.tasks-shell-input"
 	],
 	"updateContentCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 }

@@ -42,3 +42,16 @@ RUN cd /usr/local/src &&\
     cmake -DBUILD_SHARED_LIBS=TRUE -DFMT_INSTALL=TRUE -DFMT_DOC=OFF -DFMT_TEST=OFF .. &&\
     make &&\
     make install
+
+# Install plog as a shared lib
+ARG PLOG_TAG=1.1.8
+WORKDIR /usr/local/src/plog
+RUN cd /usr/local/src &&\
+    git clone https://github.com/SergiusTheBest/plog.git &&\
+    cd plog &&\
+    git checkout ${PLOG_TAG} &&\
+    mkdir build &&\
+    cd build &&\
+    cmake -DBUILD_SHARED_LIBS=TRUE -DPLOG_BUILD_SAMPLES=OFF -DPLOG_INSTALL=ON .. &&\
+    make &&\
+    make install
