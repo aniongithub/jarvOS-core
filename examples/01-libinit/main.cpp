@@ -1,22 +1,22 @@
-#include <zeropoint/zp.h>
+#include <jarvOS/jOS.h>
 
 #include <stdio.h>
 
 int main(int argc, char *argv[])
 {
-    ZP_Lib libHdl;
-    auto result = zpLibInit(&libHdl);
-    if (result != ZP_RESULT_OK)
+    jOS_Lib libHdl;
+    auto result = jOSLibInit(&libHdl);
+    if (result != jOS_RESULT_OK)
     {
-        printf("Could not initalize zeropoint, error was %d\n", result);
+        printf("Could not initalize jarvOS, error was %d\n", result);
         return result;
     }
     
-    printf("Initialized zeropoint lib, shutting down...\n");
-    result = zpLibShutdown(libHdl);
-    if (result != ZP_RESULT_OK)
-        printf("Could not shutdown zeropoint, error was %d\n", result);
+    printf("Initialized jarvOS lib, shutting down...\n");
+    result = jOSLibShutdown(libHdl);
+    if (result != jOS_RESULT_OK)
+        printf("Could not shutdown jarvOS, error was %d\n", result);
     
-    printf("Shutdown zeropoint lib successfully\n");
+    printf("Shutdown jarvOS lib successfully\n");
     return result;
 }

@@ -1,36 +1,10 @@
-# MACRO(SUBDIRLIST result curdir)
-#   FILE(GLOB children CONFIGURE_DEPENDS RELATIVE ${curdir} ${curdir}/*)
-#   SET(dirlist "")
-#   FOREACH(child ${children})
-#     IF(IS_DIRECTORY ${curdir}/${child})
-#       LIST(APPEND dirlist ${child})
-#     ENDIF()
-#   ENDFOREACH()
-#   SET(${result} ${dirlist})
-# ENDMACRO()
-
 file(GLOB examples CONFIGURE_DEPENDS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/*)
 foreach(example ${examples})
   if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${example})
     message(STATUS "Adding example ${example}...")
     file(GLOB_RECURSE example_sources CONFIGURE_DEPENDS "${example}/*.cpp" "${example}/*.h")
     add_executable(${example} ${example_sources})
-    add_dependencies(${example} zeropoint)
-    target_link_libraries(${example} zeropoint)
+    add_dependencies(${example} jarvOS)
+    target_link_libraries(${example} jarvOS)
   endif()
 endforeach()
-
-# SUBDIRLIST(examples ${CMAKE_CURRENT_SOURCE_DIR})
-# foreach(example ${examples})
-#     message(STATUS ${example})
-# endforeach(example ${examples})
-
-
-# file(GLOB EXAMPLES CONFIGURE_DEPENDS *.cpp)
-# foreach(exampleSource ${APP_SOURCES})
-#     # I used a simple string replace, to cut off .cpp.
-#     string( REPLACE ".cpp" "" testname ${testsourcefile} )
-#     add_executable( ${testname} ${testsourcefile} )
-#     # Make sure YourLib is linked to each app
-#     target_link_libraries( ${testname} YourLib )
-# endforeach( testsourcefile ${APP_SOURCES} )

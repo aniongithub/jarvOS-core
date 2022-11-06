@@ -1,5 +1,5 @@
-#include <zp_module.h>
-#include <utils/zp_macros.h>
+#include <jOS_module.h>
+#include <utils/jOS_macros.h>
 #include <plog/Log.h>
 #include <fmt/format.h>
 
@@ -11,11 +11,11 @@ namespace fs = std::filesystem;
 // TODO: Use something like flexdll when porting to/testing on Windows
 // https://github.com/ocaml/flexdll
 
-ZP_Module_t::ZP_Module_t()
+jOS_Module_t::jOS_Module_t()
 {
 }
 
-ZP_Result ZP_Module_t::load(ZP_ModuleParams params)
+jOS_Result jOS_Module_t::load(jOS_ModuleParams params)
 {
     void* hdl = nullptr;
     fs::path hintPath = (params.hintPath && (params.hintPathSizeBytes > 0)) ?
@@ -36,7 +36,7 @@ ZP_Result ZP_Module_t::load(ZP_ModuleParams params)
     else
     {
         PLOGD << "No id and/or hintPath specified";
-        return ZP_RESULT_INVALID_ARGUMENTS;
+        return jOS_RESULT_INVALID_ARGUMENTS;
     }
 
     // Save this
@@ -44,10 +44,10 @@ ZP_Result ZP_Module_t::load(ZP_ModuleParams params)
 
     // TODO: Load all function pointers here
 
-    return moduleHdl ? ZP_RESULT_OK : ZP_RESULT_MODULE_NOT_FOUND;
+    return moduleHdl ? jOS_RESULT_OK : jOS_RESULT_MODULE_NOT_FOUND;
 }
 
-ZP_Module_t::~ZP_Module_t()
+jOS_Module_t::~jOS_Module_t()
 {
     if (moduleHdl)
     {
@@ -59,12 +59,12 @@ ZP_Module_t::~ZP_Module_t()
     }
 }
 
-ZP_Result zpAcquireModule(ZP_ModuleParams params, ZP_Module* zpm)
+jOS_Result jOSAcquireModule(jOS_ModuleParams params, jOS_Module* jOSm)
 {
-    return ZP_RESULT_NOT_IMPLEMENTED;
+    return jOS_RESULT_NOT_IMPLEMENTED;
 }
 
-ZP_Result zpReleaseModule(ZP_Module zpm)
+jOS_Result jOSReleaseModule(jOS_Module jOSm)
 {
-    return ZP_RESULT_NOT_IMPLEMENTED;
+    return jOS_RESULT_NOT_IMPLEMENTED;
 }
