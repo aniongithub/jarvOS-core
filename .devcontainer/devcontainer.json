@@ -1,7 +1,7 @@
 {
 	"name": "dev",
 	"context": "..",
-	"dockerFile": "../dev.Dockerfile",
+	"dockerFile": "dev.Dockerfile",
 	"extensions": [
 		"twxs.cmake",
 		"ms-vscode.cmake-tools",

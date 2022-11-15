@@ -27,8 +27,6 @@ jOS_Result jOS_LoggerHandle_t::init(jOS_LoggerParams params)
         return jOS_RESULT_INVALID_ARGUMENTS;
     
     _appender = std::unique_ptr<jOS_LogAppender>(new jOS_LogAppender(params.onLog));
-    plog::init((plog::Severity)params.logLevel, _appender.get());
-
     return jOS_RESULT_OK;
 }
 
@@ -43,6 +41,7 @@ jOS_Result jOSCreateLogger(jOS_Lib libHdl, jOS_LoggerParams params, jOS_LoggerHa
     }
     
     libHdl->loggers().emplace_back(hdl);
+    libHdl->dynamicAppender().addAppender(hdl->appender());
     *logger = hdl;
 
     return jOS_RESULT_OK;
@@ -63,6 +62,8 @@ jOS_Result jOSDestroyLogger(jOS_Lib libHdl, jOS_LoggerHandle logger)
     auto iter = std::find(libHdl->loggers().begin(), libHdl->loggers().end(), logger);
     if (iter == libHdl->loggers().end())
         return jOS_RESULT_INVALID_ARGUMENTS;
+    
+    libHdl->dynamicAppender().removeAppender(logger->appender());
     libHdl->loggers().erase(iter);
     delete logger;
 

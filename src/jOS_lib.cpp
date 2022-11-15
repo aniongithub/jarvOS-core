@@ -1,6 +1,9 @@
 #include <jOS_lib.h>
 
 #include <plog/Log.h>
+#include <plog/Init.h>
+#include <plog/Formatters/TxtFormatter.h> 
+#include <plog/Appenders/ColorConsoleAppender.h> 
 #ifndef NDEBUG
 #include "plog/Initializers/RollingFileInitializer.h"
 #endif
@@ -10,6 +13,13 @@
 jOS_Lib_t::jOS_Lib_t() 
 {
     _loggers = std::vector<jOS_LoggerHandle>();
+    plog::init(plog::Severity::verbose, &_dynamicAppender);
+
+    // Add a default appender if built in debug
+    #ifndef NDEBUG
+        static plog::ColorConsoleAppender<plog::TxtFormatter> consoleAppender;
+        _dynamicAppender.addAppender(&consoleAppender);
+    #endif
 }
 
 jOS_Lib_t::~jOS_Lib_t()

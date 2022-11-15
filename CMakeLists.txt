@@ -3,7 +3,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-project(jarvOS VERSION 0.1 DESCRIPTION "jarvOS ϕ is a cross-platform framework for building high-performance, distributed, real/non-realtime applications with a focus on simulation, training and deployment of autonomous agents.")
+project(jarvOS VERSION 0.1 DESCRIPTION "jarvOS is a set of libraries and tools to create, manage, transform and execute distributed dataflow graphs")
 
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 

@@ -18,4 +18,6 @@ struct jOS_LoggerHandle_t {
         std::unique_ptr<jOS_LogAppender> _appender;
     public:
         jOS_Result init(jOS_LoggerParams params);
+
+        plog::IAppender* appender() { return _appender.get(); }
 };

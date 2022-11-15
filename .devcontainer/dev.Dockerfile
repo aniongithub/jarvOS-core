@@ -44,7 +44,7 @@ RUN cd /usr/local/src &&\
     make install
 
 # Install plog as a shared lib
-ARG PLOG_TAG=1.1.8
+ARG PLOG_TAG=master
 WORKDIR /usr/local/src/plog
 RUN cd /usr/local/src &&\
     git clone https://github.com/SergiusTheBest/plog.git &&\
