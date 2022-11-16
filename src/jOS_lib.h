@@ -4,8 +4,8 @@
 
 #include <jarvOS/jOS.h>
 
- #include <plog/Log.h> 
- #include <plog/Appenders/DynamicAppender.h>
+#include <plog/Log.h> 
+#include <plog/Appenders/DynamicAppender.h>
  
 struct jOS_Lib_t {
     private:

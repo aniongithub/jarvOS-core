@@ -1,8 +1,18 @@
 #pragma once
 
-#include <jarvOS/jOS.h>
-#include <plog/Log.h>
 #include <memory>
+
+#include <plog/Log.h>
+#include <fmt/format.h>
+
+#include <jarvOS/jOS.h>
+
+#define JOS_LOGFATAL(msg, ...) jOSLog(jOS_LOGLEVEL_FATAL, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
+#define JOS_LOGERROR(msg, ...) jOSLog(jOS_LOGLEVEL_ERROR, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
+#define JOS_LOGWARNING(msg, ...) jOSLog(jOS_LOGLEVEL_WARNING, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
+#define JOS_LOGINFO(msg, ...) jOSLog(jOS_LOGLEVEL_INFO, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
+#define JOS_LOGDEBUG(msg, ...) jOSLog(jOS_LOGLEVEL_DEBUG, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
+#define JOS_LOGVERBOSE(msg, ...) jOSLog(jOS_LOGLEVEL_VERBOSE, __PRETTY_FUNCTION__, __LINE__, __FILE__, fmt::format(msg,##__VA_ARGS__).c_str())
 
 class jOS_LogAppender : public plog::IAppender
 {

@@ -14,12 +14,18 @@ enum jOS_Result_t {
   jOS_RESULT_INVALID_ARGUMENTS = -5,
   jOS_RESULT_NOT_IMPLEMENTED = -4,
   jOS_RESULT_NOT_SUPPORTED = -3,
-  jOS_RESULT_MODULE_NOT_FOUND = -2,
+  jOS_RESULT_MODULE_LOAD_ERROR = -2,
   jOS_RESULT_UNKNOWN_ERROR = -1,
   jOS_RESULT_OK = 0,
   jOS_COMPLETE = 1
 };
 typedef enum jOS_Result_t jOS_Result;
+
+#pragma region Result API
+
+jOS_EXPORT jOS_Result jOSGetResultString(jOS_Result result, char* buf, size_t* bufSizeBytes);
+
+#pragma endregion Result API
 
 #pragma region Library API
 
@@ -86,22 +92,25 @@ struct jOS_ModuleParams_t
 
   char* hintPath;
   size_t hintPathSizeBytes;
+
+  char * id;
+  size_t idSizeBytes;
 };
 typedef struct jOS_ModuleParams_t jOS_ModuleParams;
 
-typedef jOS_Result (*jOS_AcquireModuleFunc)(jOS_ModuleParams params, jOS_Module* jOSm);
+typedef jOS_Result (*jOS_AcquireModuleFunc)(jOS_ModuleParams params, jOS_Module* jOSmodule);
 #define jOS_AcquireModuleFuncName "AcquireModule"
-jOS_EXPORT jOS_Result jOSAcquireModule(jOS_ModuleParams params, jOS_Module* jOSm);
+jOS_EXPORT jOS_Result jOSAcquireModule(jOS_ModuleParams params, jOS_Module* jOSmodule);
 
-typedef jOS_Result (*jOS_ReleaseModuleFunc)(jOS_Module jOSm);
+typedef jOS_Result (*jOS_ReleaseModuleFunc)(jOS_Module jOSmodule);
 #define jOS_ReleaseModuleFuncName "ReleaseModule"
-jOS_EXPORT jOS_Result jOSReleaseModule(jOS_Module jOSm);
+jOS_EXPORT jOS_Result jOSReleaseModule(jOS_Module jOSmodule);
 
 typedef jOS_Result (*jOS_InitModuleFunc)();
 #define jOS_InitModuleFuncName "InitModule"
 
 typedef jOS_Result (*jOS_shutdownModuleFunc)();
-#define jOS_shutdownModuleFuncName "shutdownModule"
+#define jOS_shutdownModuleFuncName "ShutdownModule"
 
 #pragma endregion Module API
 
@@ -155,9 +164,9 @@ struct jOS_PortalParams_t {
 };
 typedef struct jOS_PortalParams_t jOS_PortalParams;
 
-typedef jOS_Result (*jOS_CreatePortalFunc)(jOS_Module jOSm, jOS_PortalParams params, jOS_Portal* portal);
+typedef jOS_Result (*jOS_CreatePortalFunc)(jOS_Module jOSmodule, jOS_PortalParams params, jOS_Portal* portal);
 #define jOS_CreatePortalFuncName "CreatePortal"
-jOS_EXPORT jOS_Result jOSCreatePortal(jOS_Module jOSm, jOS_PortalParams params, jOS_Portal* portal);
+jOS_EXPORT jOS_Result jOSCreatePortal(jOS_Module jOSmodule, jOS_PortalParams params, jOS_Portal* portal);
 
 typedef jOS_Result (*jOS_ReleasePortalFunc)(jOS_Portal portal);
 #define jOS_ReleasePortalFuncName "ReleasePortal"

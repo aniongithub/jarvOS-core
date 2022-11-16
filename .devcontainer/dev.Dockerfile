@@ -55,3 +55,16 @@ RUN cd /usr/local/src &&\
     cmake -DBUILD_SHARED_LIBS=TRUE -DPLOG_BUILD_SAMPLES=OFF -DPLOG_INSTALL=ON .. &&\
     make &&\
     make install
+
+# Install magic enum as a static lib
+ARG MAGIC_ENUM_TAG=master
+WORKDIR /usr/local/src/magic_enum
+RUN cd /usr/local/src &&\
+    git clone https://github.com/Neargye/magic_enum.git &&\
+    cd magic_enum &&\
+    git checkout ${MAGIC_ENUM_TAG} &&\
+    mkdir build &&\
+    cd build &&\
+    cmake -DBUILD_SHARED_LIBS=FALSE -DMAGIC_ENUM_OPT_BUILD_EXAMPLES=OFF -DMAGIC_ENUM_OPT_BUILD_TESTS=OFF -DMAGIC_ENUM_OPT_INSTALL=ON .. &&\
+    make &&\
+    make install

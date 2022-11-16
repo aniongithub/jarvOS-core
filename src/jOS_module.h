@@ -4,10 +4,10 @@
 
 struct jOS_Module_t {
     private:
-        void* moduleHdl;
+        void* _moduleHdl;
 
-        jOS_InitModuleFunc initModule;
-        jOS_shutdownModuleFunc shutdownModule;
+        jOS_InitModuleFunc _initModuleFunc;
+        jOS_shutdownModuleFunc _shutdownModuleFunc;
     public:
         jOS_Module_t();
         jOS_Result load(jOS_ModuleParams params);

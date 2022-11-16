@@ -7,7 +7,8 @@ find_package(plog REQUIRED)
 target_include_directories(${PROJECT_NAME}
     PRIVATE 
         ${CMAKE_CURRENT_SOURCE_DIR}
-        plog)
+        plog
+        magic_enum)
 
 # Add all private sources here
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "*.cpp" "*.h")
@@ -19,7 +20,7 @@ target_sources(${PROJECT_NAME}
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME}
-    PRIVATE 
+    INTERFACE 
         ${CMAKE_THREAD_LIBS_INIT}
         fmt::fmt
         dl)
