@@ -1,11 +1,11 @@
-#include <jarvOS/jOS.h>
+#include <polyverse/pv.h>
 
-jOS_EXPORT jOS_Result simple_InitModule()
+pv_EXPORT pv_Result simple_InitModule()
 {
-    return jOS_Result::jOS_RESULT_OK;
+    return pv_Result::pv_RESULT_OK;
 }
 
-jOS_EXPORT jOS_Result simple_ShutdownModule()
+pv_EXPORT pv_Result simple_ShutdownModule()
 {
-    return jOS_Result::jOS_RESULT_OK;
+    return pv_Result::pv_RESULT_OK;
 }

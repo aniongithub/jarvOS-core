@@ -1,14 +1,14 @@
-#include <jarvOS/jOS.h>
+#include <polyverse/pv.h>
 
 #include <limits>
 #include <string.h>
 
 #include <magic_enum/magic_enum.hpp>
 
-jOS_Result jOSGetResultString(jOS_Result result, char* buf, size_t* bufSizeBytes)
+pv_Result pvGetResultString(pv_Result result, char* buf, size_t* bufSizeBytes)
 {
     if (!bufSizeBytes)
-        return jOS_Result::jOS_RESULT_INVALID_ARGUMENTS;
+        return pv_Result::pv_RESULT_INVALID_ARGUMENTS;
 
     auto value = magic_enum::enum_name(result);
     if (buf)
@@ -16,5 +16,5 @@ jOS_Result jOSGetResultString(jOS_Result result, char* buf, size_t* bufSizeBytes
     else
         *bufSizeBytes = value.length();
 
-    return jOS_Result::jOS_RESULT_OK;
+    return pv_Result::pv_RESULT_OK;
 }

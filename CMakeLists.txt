@@ -3,13 +3,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_GLIBCXX_DEBUG")
 
-project(jarvOS VERSION 0.1 DESCRIPTION "jarvOS is a set of libraries and tools to create, manage, transform and execute distributed dataflow graphs")
+project(Polyverse VERSION 0.1 DESCRIPTION "Polyverse is a set of libraries and tools to create, manage, transform and execute distributed dataflow graphs")
 
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
 # Generate wrapper source
 include(cmake/castxml.cmake)
-cast_xml(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/jOS.h ${CMAKE_CURRENT_BINARY_DIR}/jOS.xml)
+cast_xml(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/include/polyverse/pv.h ${CMAKE_CURRENT_BINARY_DIR}/pv.xml)
 
 add_library(${PROJECT_NAME} SHARED libmain.c)
 

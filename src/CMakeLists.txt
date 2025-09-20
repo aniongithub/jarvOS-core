@@ -11,7 +11,7 @@ target_include_directories(${PROJECT_NAME}
         magic_enum)
 
 # Add all private sources here
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "*.cpp" "*.h")
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "pv_*.cpp" "pv_*.h" "utils/pv_*.cpp" "utils/pv_*.h")
 
 target_sources(${PROJECT_NAME}
     PRIVATE

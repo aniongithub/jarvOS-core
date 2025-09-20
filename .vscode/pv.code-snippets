@@ -1,0 +1,39 @@
+{
+	"Polyverse API": {
+		"scope": "c,cpp",
+		"prefix": "pvapi",
+		"body": [
+			"typedef pv_Result (*pv_${1:name}Func)(${2:args});",
+			"#define pv_${1:name}FuncName \"${1:name}\"",
+			"pv_EXPORT pv_Result pv${1:name}(${2:args});"
+		],
+		"description": "Declare a Polyverse API call, its function type and exported name"
+	},
+	"Polyverse handle": {
+		"scope": "c,cpp",
+		"prefix": "pvhdl",
+		"body": [
+			"struct pv_${1:name}Handle_t;",
+			"typedef struct pv_${1:name}Handle_t* pv_${1:name}Handle;"
+		]
+	},
+	"Polyverse struct": {
+		"scope": "c,cpp",
+		"prefix": "pvparm",
+		"body": [
+			"struct pv_${1:name}Params_t",
+			"{",
+			"  // TODO: Members go here",
+			"};",
+			"typedef struct pv_${1:name}Params_t* pv_${1:name}Params;"
+		]
+	},
+	"Polyverse string": {
+		"scope": "c,cpp",
+		"prefix": "pvstr",
+		"body": [
+			"char* ${1:name};",
+			"size_t ${1:name}SizeBytes;"
+		]
+	}
+}

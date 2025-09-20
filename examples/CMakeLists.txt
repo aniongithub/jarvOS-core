@@ -14,9 +14,9 @@ foreach(example ${examples})
       add_executable(${example} ${example_sources})
     endif()
     
-    add_dependencies(${example} jarvOS)
+    add_dependencies(${example} Polyverse)
     target_link_libraries(${example} 
       PUBLIC 
-        jarvOS)
+        Polyverse)
   endif()
 endforeach()
