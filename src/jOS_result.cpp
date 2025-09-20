@@ -3,7 +3,7 @@
 #include <limits>
 #include <string.h>
 
-#include <magic_enum.hpp>
+#include <magic_enum/magic_enum.hpp>
 
 jOS_Result jOSGetResultString(jOS_Result result, char* buf, size_t* bufSizeBytes)
 {
