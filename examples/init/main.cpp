@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     char errorName[256] = {0};
     size_t errorNameSizeBytes = 256;
     
-    if (result != pv_RESULT_OK)
+    if (result != PV_RESULT_OK)
     {
         pvGetResultString(result, &errorName[0], &errorNameSizeBytes);
         printf("Could not initalize Polyverse, error was %s\n", errorName);
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     
     printf("Initialized Polyverse lib, shutting down...\n");
     result = pvLibShutdown(libHdl);
-    if (result != pv_RESULT_OK)
+    if (result != PV_RESULT_OK)
     {
         pvGetResultString(result, &errorName[0], &errorNameSizeBytes);
         printf("Could not shutdown Polyverse, error was %s\n", errorName);

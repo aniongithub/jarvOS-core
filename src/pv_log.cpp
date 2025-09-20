@@ -24,17 +24,17 @@ void pv_LogAppender::write(const plog::Record& record)
 pv_Result pv_LoggerHandle_t::init(pv_LoggerParams params)
 {
     if (!params.onLog)
-        return pv_RESULT_INVALID_ARGUMENTS;
+        return PV_RESULT_INVALID_ARGUMENTS;
     
     _appender = std::unique_ptr<pv_LogAppender>(new pv_LogAppender(params.onLog));
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }
 
 pv_Result pvCreateLogger(pv_Lib libHdl, pv_LoggerParams params, pv_LoggerHandle* logger)
 {
     auto hdl = new pv_LoggerHandle_t();
     auto result =  hdl->init(params);
-    if (result != pv_RESULT_OK)
+    if (result != PV_RESULT_OK)
     {
         PV_LOGERROR("Could not create logger, error was {}", result);
         delete hdl;
@@ -46,7 +46,7 @@ pv_Result pvCreateLogger(pv_Lib libHdl, pv_LoggerParams params, pv_LoggerHandle*
     *logger = hdl;
     PV_LOGDEBUG("Successfully created logger {}!", static_cast<void*>(hdl));
 
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }
 
 pv_Result pvLog(pv_LogLevel level, const char* function, size_t line, const char* file, const char* message)
@@ -54,18 +54,18 @@ pv_Result pvLog(pv_LogLevel level, const char* function, size_t line, const char
     plog::Record record((plog::Severity)level, function, line, file, nullptr, 0);
     record << message;
     *plog::get<PLOG_DEFAULT_INSTANCE_ID>() += record;
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }
 
 pv_Result pvDestroyLogger(pv_Lib libHdl, pv_LoggerHandle logger)
 {
     if (!logger)
-        return pv_RESULT_INVALID_ARGUMENTS;
+        return PV_RESULT_INVALID_ARGUMENTS;
     auto iter = std::find(libHdl->loggers().begin(), libHdl->loggers().end(), logger);
     if (iter == libHdl->loggers().end())
     {
         PV_LOGERROR("Could not find logger with handle {}", static_cast<void*>(logger));
-        return pv_RESULT_INVALID_ARGUMENTS;
+        return PV_RESULT_INVALID_ARGUMENTS;
     }
     
     libHdl->dynamicAppender().removeAppender(logger->appender());
@@ -73,5 +73,5 @@ pv_Result pvDestroyLogger(pv_Lib libHdl, pv_LoggerHandle logger)
     PV_LOGDEBUG("Logger {} destroyed!", static_cast<void*>(logger));
     delete logger;
 
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }

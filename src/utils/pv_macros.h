@@ -20,12 +20,12 @@ pv_Result getFunc(void* hdl, T& func, const std::string_view& formatStr, Args ..
     if (func)
     {
         PV_LOGDEBUG("API impl {} loaded", name.c_str());
-        return pv_Result::pv_RESULT_OK;
+        return pv_Result::PV_RESULT_OK;
     }
     else
     {
         PV_LOGWARNING("API impl {} not found", name.c_str());
-        return pv_Result::pv_RESULT_NOT_SUPPORTED;
+        return pv_Result::PV_RESULT_NOT_SUPPORTED;
     }
 }
 #define GET_FUNC_PTR(funcName, libHdl, id, funcPtr) getFunc<funcName>(libHdl, funcPtr, "{}_{}", id, funcName ## Name)

@@ -34,13 +34,13 @@ pv_Result pvLibInit(pv_Lib* libHdl)
     if (!libHdl)
     {
         PV_LOGERROR("Invalid arguments, libHdl was null");
-        return pv_RESULT_INVALID_ARGUMENTS;
+        return PV_RESULT_INVALID_ARGUMENTS;
     }
     
     *libHdl = new pv_Lib_t();
     PV_LOGDEBUG("Created library handle {} successfully", static_cast<void*>(*libHdl));
     
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }
 
 pv_Result pvLibShutdown(pv_Lib libHdl)
@@ -48,10 +48,10 @@ pv_Result pvLibShutdown(pv_Lib libHdl)
     if (!libHdl)
     {
         PV_LOGERROR("Invalid arguments, libHdl was null");
-        return pv_RESULT_INVALID_ARGUMENTS;
+        return PV_RESULT_INVALID_ARGUMENTS;
     }
     PV_LOGDEBUG("Deleting libHdl {}", static_cast<void*>(libHdl));
     delete libHdl;
 
-    return pv_RESULT_OK;
+    return PV_RESULT_OK;
 }

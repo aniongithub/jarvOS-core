@@ -8,7 +8,7 @@
 pv_Result pvGetResultString(pv_Result result, char* buf, size_t* bufSizeBytes)
 {
     if (!bufSizeBytes)
-        return pv_Result::pv_RESULT_INVALID_ARGUMENTS;
+        return pv_Result::PV_RESULT_INVALID_ARGUMENTS;
 
     auto value = magic_enum::enum_name(result);
     if (buf)
@@ -16,5 +16,5 @@ pv_Result pvGetResultString(pv_Result result, char* buf, size_t* bufSizeBytes)
     else
         *bufSizeBytes = value.length();
 
-    return pv_Result::pv_RESULT_OK;
+    return pv_Result::PV_RESULT_OK;
 }
