@@ -1,10 +1,10 @@
-# Polyverse
+# polyverse
 
-**Polyverse** is an open C API specification to create, manage, transform and execute distributed dataflow graphs - giving software developers a design paradigm to build distributed software systems with minimal effort while being modular, flexible and composable.
+**polyverse** is an open C API specification to create, manage, transform and execute distributed dataflow graphs - giving software developers a design paradigm to build distributed software systems with minimal effort while being modular, flexible and composable.
 
 **Polyverse** supports a wide variety of applications, ranging from embedded software running on hardware-accelerated edge devices to large-scale, cloud based platforms through a unified low-level, high-performance, portable API abstraction. This API also seamlessly allows for composition of logic blocks (called **Nodes**) in a low/no-code environment. By creating this unified interface abstraction, Polyverse hopes to form the foundational layer of an ecosystem of composable dataflow building blocks that non-technical users can build solutions from in low-code/no-code environments.
 
-**Polyverse** consists of:
+**polyverse** consists of:
 
 * An API for creating **Nodes**, which are the smallest unit of composable work in this abstraction. **Nodes** are considered black-boxes that operate on the currently available inputs and produce outputs for the current (time) step.
 * An API for creating transforms and applying them on **Nodes**, called **Portals**. **Portals** allow transformation of any **Nodes** acquired through them, allowing us to create local or distributed (sub)graphs, render views of **Nodes** via a specific **Portal** or create any number of abstractions that operate on these graphs to produce other graphs via a transformation.
